@@ -1,1 +1,11 @@
 .claude/
+
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+
+# next typescript
+next-env.d.ts
