@@ -1,0 +1,130 @@
+/*
+ * Personal Finance App — Design Tokens
+ * Source: Figma Style Guide
+ * All tokens registered with Tailwind v4 @theme directive.
+ * Usage: Tailwind semantic utility classes e.g. bg-beige-500, text-grey-900, etc.
+ */
+
+@theme {
+
+  /* ============================================================
+   * COLORS
+   * ============================================================ */
+
+  /* Beige */
+  --color-beige-500: #98908B;
+  --color-beige-100: #F8F4F0;
+
+  /* Grey */
+  --color-grey-900: #201F24;
+  --color-grey-500: #696868;
+  --color-grey-300: #B3B3B3;
+  --color-grey-100: #F2F2F2;
+
+  /* Secondary Colors */
+  --color-green:      #277C78;
+  --color-yellow:     #F2CDAC;
+  --color-cyan:       #82C9D7;
+  --color-navy:       #626070;
+  --color-red:        #C94736;
+  --color-purple:     #826CB0;
+
+  /* Other Colors */
+  --color-magenta:    #934F6F;
+  --color-blue:       #3F82B2;
+  --color-navy-grey:  #97A0AC;
+  --color-army-green: #7F9161;
+  --color-gold:       #CAB361;
+  --color-orange:     #BE6C49;
+
+  /* White */
+  --color-white: #FFFFFF;
+
+  /* ============================================================
+   * SEMANTIC ALIASES
+   * Map raw tokens to roles so components stay decoupled
+   * from palette changes.
+   * ============================================================ */
+
+  /* Backgrounds */
+  --color-bg-primary:   var(--color-beige-100);
+  --color-bg-card:      var(--color-white);
+  --color-bg-sidebar:   var(--color-grey-900);
+
+  /* Text */
+  --color-text-primary:   var(--color-grey-900);
+  --color-text-secondary: var(--color-grey-500);
+  --color-text-muted:     var(--color-grey-300);
+  --color-text-inverse:   var(--color-white);
+
+  /* Interactive / Brand */
+  --color-accent:         var(--color-green);
+  --color-accent-hover:   #1e6b67;           /* green darkened ~5% */
+  --color-destructive:    var(--color-red);
+  --color-border:         var(--color-grey-100);
+  --color-border-focus:   var(--color-grey-900);
+
+  /* Budget / Pot theme palette (used for category dot colors) */
+  --color-theme-green:      var(--color-green);
+  --color-theme-yellow:     var(--color-yellow);
+  --color-theme-cyan:       var(--color-cyan);
+  --color-theme-navy:       var(--color-navy);
+  --color-theme-red:        var(--color-red);
+  --color-theme-purple:     var(--color-purple);
+  --color-theme-magenta:    var(--color-magenta);
+  --color-theme-blue:       var(--color-blue);
+  --color-theme-navy-grey:  var(--color-navy-grey);
+  --color-theme-army-green: var(--color-army-green);
+  --color-theme-gold:       var(--color-gold);
+  --color-theme-orange:     var(--color-orange);
+
+  /* ============================================================
+   * TYPOGRAPHY
+   * Font: Public Sans (loaded via next/font/local)
+   * ============================================================ */
+
+  --font-sans: 'Public Sans', sans-serif;
+
+  /*
+   * Text Presets
+   * Naming: --text-preset-{n} maps to font-size / line-height pair.
+   * Bold variants handled via font-weight utilities (font-bold).
+   *
+   * Preset 1  — 32px / 120% / Bold
+   * Preset 2  — 20px / 120% / Bold
+   * Preset 3  — 16px / 150% / Bold
+   * Preset 4  — 14px / 150% / Regular
+   * Preset 4B — 14px / 150% / Bold
+   * Preset 5  — 12px / 150% / Regular
+   * Preset 5B — 12px / 150% / Bold
+   *
+   * Letter spacing: 0px on all presets.
+   */
+
+  --text-preset-1:      2rem;        /* 32px */
+  --text-preset-2:      1.25rem;     /* 20px */
+  --text-preset-3:      1rem;        /* 16px */
+  --text-preset-4:      0.875rem;    /* 14px */
+  --text-preset-5:      0.75rem;     /* 12px */
+
+  --leading-preset-1:   1.2;         /* 120% */
+  --leading-preset-2:   1.2;         /* 120% */
+  --leading-preset-3:   1.5;         /* 150% */
+  --leading-preset-4:   1.5;         /* 150% */
+  --leading-preset-5:   1.5;         /* 150% */
+
+  /* ============================================================
+   * SPACING SCALE
+   * Token number maps to Figma spacing scale label.
+   * ============================================================ */
+
+  --spacing-50:  0.25rem;   /*  4px */
+  --spacing-100: 0.5rem;    /*  8px */
+  --spacing-150: 0.75rem;   /* 12px */
+  --spacing-200: 1rem;      /* 16px */
+  --spacing-250: 1.25rem;   /* 20px */
+  --spacing-300: 1.5rem;    /* 24px */
+  --spacing-400: 2rem;      /* 32px */
+  --spacing-500: 2.5rem;    /* 40px */
+
+}
