@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Public_Sans } from 'next/font/google';
 import { Toaster } from 'sonner';
 import { AuthProvider } from '@/src/contexts/AuthContext';
+import ReduxProvider from '@/src/components/providers/ReduxProvider';
 import './globals.css';
 
 const publicSans = Public_Sans({
@@ -20,10 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={publicSans.variable}>
       <body className="antialiased font-sans bg-beige-100 text-grey-900">
-        <AuthProvider>
-          {children}
-          <Toaster richColors position="top-right" />
-        </AuthProvider>
+        <ReduxProvider>
+          <AuthProvider>
+            {children}
+            <Toaster richColors position="top-right" />
+          </AuthProvider>
+        </ReduxProvider>
       </body>
     </html>
   );
