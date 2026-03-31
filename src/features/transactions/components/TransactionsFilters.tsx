@@ -1,6 +1,6 @@
 'use client';
 
-import { Search, ChevronDown } from 'lucide-react';
+import { Search, ChevronDown, ArrowUpDown, SlidersHorizontal } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 
 export type SortOption = 'latest' | 'oldest' | 'a-z' | 'z-a' | 'highest' | 'lowest';
@@ -34,9 +34,9 @@ export default function TransactionsFilters({
   onCategoryChange,
 }: Props) {
   return (
-    <div className="flex items-center justify-between gap-4 flex-wrap">
-      {/* Search */}
-      <div className="relative w-80">
+    <div className="flex items-center justify-between gap-4">
+      {/* Search — expands on mobile, fixed width on desktop */}
+      <div className="relative flex-1 md:flex-none md:w-80">
         <input
           type="text"
           placeholder="Search transaction"
@@ -54,8 +54,46 @@ export default function TransactionsFilters({
         />
       </div>
 
-      {/* Sort + Category controls */}
-      <div className="flex items-center gap-6">
+      {/* Mobile: icon buttons with hidden native selects */}
+      <div className="flex md:hidden items-center gap-6">
+        {/* Sort icon */}
+        <div className="relative flex items-center justify-center size-5">
+          <ArrowUpDown size={20} className="text-grey-900 pointer-events-none" />
+          <select
+            value={sort}
+            onChange={(e) => onSortChange(e.target.value as SortOption)}
+            className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+            aria-label="Sort by"
+          >
+            {SORT_OPTIONS.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Category filter icon */}
+        <div className="relative flex items-center justify-center size-5">
+          <SlidersHorizontal size={20} className="text-grey-900 pointer-events-none" />
+          <select
+            value={category}
+            onChange={(e) => onCategoryChange(e.target.value)}
+            className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+            aria-label="Filter by category"
+          >
+            <option value="">All Transactions</option>
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      {/* Desktop: labeled dropdowns */}
+      <div className="hidden md:flex items-center gap-6">
         {/* Sort by */}
         <div className="flex items-center gap-2">
           <span className="text-preset-4 text-grey-500 whitespace-nowrap">Sort by</span>

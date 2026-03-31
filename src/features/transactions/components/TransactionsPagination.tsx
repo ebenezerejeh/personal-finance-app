@@ -9,27 +9,32 @@ interface Props {
   onPageChange: (page: number) => void;
 }
 
+type PageItem = number | 'ellipsis';
+
+function getPageItems(currentPage: number, totalPages: number): PageItem[] {
+  // Show all pages when 5 or fewer
+  if (totalPages <= 5) {
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
+  }
+
+  const items: PageItem[] = [1];
+
+  const rangeStart = Math.max(2, currentPage - 1);
+  const rangeEnd = Math.min(totalPages - 1, currentPage + 1);
+
+  if (rangeStart > 2) items.push('ellipsis');
+  for (let p = rangeStart; p <= rangeEnd; p++) items.push(p);
+  if (rangeEnd < totalPages - 1) items.push('ellipsis');
+
+  items.push(totalPages);
+  return items;
+}
+
 export default function TransactionsPagination({ currentPage, totalPages, onPageChange }: Props) {
   if (totalPages <= 1) return null;
 
-  // Build visible page numbers (show up to 5 around current page)
-  const getPageNumbers = (): number[] => {
-    const pages: number[] = [];
-    const maxVisible = 5;
+  const pageItems = getPageItems(currentPage, totalPages);
 
-    if (totalPages <= maxVisible) {
-      for (let i = 1; i <= totalPages; i++) pages.push(i);
-    } else {
-      let start = Math.max(1, currentPage - 2);
-      const end = Math.min(totalPages, start + maxVisible - 1);
-      start = Math.max(1, end - maxVisible + 1);
-      for (let i = start; i <= end; i++) pages.push(i);
-    }
-
-    return pages;
-  };
-
-  const pageNumbers = getPageNumbers();
   const buttonBase =
     'flex items-center justify-center h-10 rounded-lg border border-beige-500 text-preset-4 text-grey-900 bg-white transition-colors hover:bg-grey-100 disabled:opacity-40 disabled:cursor-not-allowed';
 
@@ -43,27 +48,37 @@ export default function TransactionsPagination({ currentPage, totalPages, onPage
         aria-label="Previous page"
       >
         <ChevronLeft size={16} />
-        <span>Prev</span>
+        <span className="hidden md:inline">Prev</span>
       </button>
 
       {/* Page numbers */}
       <div className="flex items-center gap-2">
-        {pageNumbers.map((page) => (
-          <button
-            key={page}
-            onClick={() => onPageChange(page)}
-            className={cn(
-              'size-10 flex items-center justify-center rounded-lg text-preset-4 transition-colors',
-              page === currentPage
-                ? 'bg-grey-900 text-white'
-                : 'border border-beige-500 text-grey-900 bg-white hover:bg-grey-100'
-            )}
-            aria-label={`Page ${page}`}
-            aria-current={page === currentPage ? 'page' : undefined}
-          >
-            {page}
-          </button>
-        ))}
+        {pageItems.map((item, i) =>
+          item === 'ellipsis' ? (
+            <span
+              key={`ellipsis-${i}`}
+              className="size-10 flex items-center justify-center text-preset-4 text-grey-500 select-none"
+              aria-hidden="true"
+            >
+              &hellip;
+            </span>
+          ) : (
+            <button
+              key={item}
+              onClick={() => onPageChange(item)}
+              className={cn(
+                'size-10 flex items-center justify-center rounded-lg text-preset-4 transition-colors',
+                item === currentPage
+                  ? 'bg-grey-900 text-white'
+                  : 'border border-beige-500 text-grey-900 bg-white hover:bg-grey-100'
+              )}
+              aria-label={`Page ${item}`}
+              aria-current={item === currentPage ? 'page' : undefined}
+            >
+              {item}
+            </button>
+          )
+        )}
       </div>
 
       {/* Next */}
@@ -73,7 +88,7 @@ export default function TransactionsPagination({ currentPage, totalPages, onPage
         className={cn(buttonBase, 'gap-4 px-4')}
         aria-label="Next page"
       >
-        <span>Next</span>
+        <span className="hidden md:inline">Next</span>
         <ChevronRight size={16} />
       </button>
     </div>
