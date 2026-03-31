@@ -95,10 +95,10 @@ export default function TransactionsClient() {
 
   if (isLoading) {
     return (
-      <div className="bg-white rounded-2xl p-8 animate-pulse flex flex-col gap-4">
-        <div className="flex items-center justify-between">
-          <div className="h-10 w-80 rounded-lg bg-grey-100" />
-          <div className="h-10 w-72 rounded-lg bg-grey-100" />
+      <div className="bg-white rounded-2xl p-5 md:p-8 animate-pulse flex flex-col gap-4">
+        <div className="flex items-center justify-between gap-4">
+          <div className="h-10 flex-1 md:flex-none md:w-80 rounded-lg bg-grey-100" />
+          <div className="h-10 w-12 md:w-72 rounded-lg bg-grey-100" />
         </div>
         {[...Array(10)].map((_, i) => (
           <div key={i} className="h-12 rounded-lg bg-grey-100" />
@@ -109,14 +109,14 @@ export default function TransactionsClient() {
 
   if (isError) {
     return (
-      <div className="bg-white rounded-2xl p-8">
+      <div className="bg-white rounded-2xl p-5 md:p-8">
         <p className="text-preset-4 text-red">Failed to load transactions. Please refresh.</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white rounded-2xl p-8 flex flex-col gap-6">
+    <div className="bg-white rounded-2xl p-5 md:p-8 flex flex-col gap-6">
       <TransactionsFilters
         search={search}
         sort={sort}
