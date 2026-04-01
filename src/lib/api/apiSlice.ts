@@ -4,6 +4,6 @@ export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
   keepUnusedDataFor: 120,
-  tagTypes: ['Transaction', 'Budget', 'Pot', 'Overview'],
+  tagTypes: ['Transaction', 'Budget', 'Pot', 'Overview', 'RecurringBill'],
   endpoints: () => ({}),
 });
