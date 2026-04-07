@@ -74,14 +74,14 @@ export default function PotCard({ pot, usedColors }: Props) {
           <button
             type="button"
             onClick={() => setOpenModal('add')}
-            className="flex-1 bg-beige-100 text-grey-900 text-preset-4 font-bold py-4 rounded-lg hover:bg-grey-100 transition-colors whitespace-nowrap"
+            className="flex-1 bg-beige-100 text-grey-900 text-preset-4 font-bold py-4 rounded-lg cursor-pointer hover:bg-white hover:border hover:border-beige-500 transition-colors whitespace-nowrap"
           >
             + Add Money
           </button>
           <button
             type="button"
             onClick={() => setOpenModal('withdraw')}
-            className="flex-1 bg-beige-100 text-grey-900 text-preset-4 font-bold py-4 rounded-lg hover:bg-grey-100 transition-colors whitespace-nowrap"
+            className="flex-1 bg-beige-100 text-grey-900 text-preset-4 font-bold py-4 rounded-lg cursor-pointer hover:bg-white hover:border hover:border-beige-500 transition-colors whitespace-nowrap"
           >
             Withdraw
           </button>

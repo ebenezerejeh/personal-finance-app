@@ -51,30 +51,29 @@ export default function Sidebar() {
                 key={href}
                 href={href}
                 className={cn(
-                  'group flex items-center gap-4 rounded-r-2xl py-4 pl-8 pr-6',
+                  'group flex items-center gap-4 rounded-r-2xl py-4 pr-6',
                   'transition-colors duration-150',
                   isActive
-                    ? 'bg-beige-100 text-grey-900'
-                    : 'text-grey-300 hover:text-white',
-                  collapsed && 'justify-center pl-0 pr-0 px-4'
+                    ? 'bg-beige-100 border-l-4 border-green pl-7'
+                    : 'pl-8',
+                  collapsed && 'justify-center pl-0 pr-0 px-4 border-l-0'
                 )}
               >
-                {/* Active indicator bar */}
-                {isActive && (
-                  <span className="absolute left-0 w-1 h-12 bg-green rounded-r-full" />
-                )}
-
-                <Image
-                  src={icon}
-                  alt=""
-                  width={24}
-                  height={24}
+                <span
                   className={cn(
-                    'shrink-0 transition-all',
-                    isActive
-                      ? '[filter:brightness(0)]'
-                      : 'opacity-60 group-hover:opacity-100 [filter:brightness(0)_invert(1)]'
+                    'shrink-0 block size-6 transition-[background-color] duration-150',
+                    isActive ? 'bg-green' : 'bg-grey-300 group-hover:bg-white'
                   )}
+                  style={{
+                    WebkitMaskImage: `url(${icon})`,
+                    maskImage: `url(${icon})`,
+                    WebkitMaskSize: 'contain',
+                    maskSize: 'contain',
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskRepeat: 'no-repeat',
+                    WebkitMaskPosition: 'center',
+                    maskPosition: 'center',
+                  }}
                 />
 
                 {!collapsed && (
@@ -107,7 +106,7 @@ export default function Sidebar() {
             width={24}
             height={24}
             className={cn(
-              'shrink-0 [filter:brightness(0)_invert(1)] opacity-60 hover:opacity-100 transition-all',
+              'shrink-0 filter-[brightness(0)_invert(1)] opacity-60 hover:opacity-100 transition-all',
               collapsed && 'rotate-180'
             )}
           />
@@ -133,17 +132,21 @@ export default function Sidebar() {
                 isActive ? 'bg-beige-100' : ''
               )}
             >
-              <Image
-                src={icon}
-                alt=""
-                width={24}
-                height={24}
+              <span
                 className={cn(
-                  'shrink-0',
-                  isActive
-                    ? '[filter:brightness(0)]'
-                    : '[filter:brightness(0)_invert(1)] opacity-60'
+                  'shrink-0 block size-6',
+                  isActive ? 'bg-green' : 'bg-grey-300'
                 )}
+                style={{
+                  WebkitMaskImage: `url(${icon})`,
+                  maskImage: `url(${icon})`,
+                  WebkitMaskSize: 'contain',
+                  maskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                  maskPosition: 'center',
+                }}
               />
               {isActive && (
                 <span className="text-preset-5 font-bold text-grey-900 leading-none">
