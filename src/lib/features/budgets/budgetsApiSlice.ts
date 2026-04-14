@@ -1,6 +1,9 @@
 import { apiSlice } from '@/src/lib/api/apiSlice';
 import type { Budget } from '@/src/types';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const updateBudgetsCache = (apiSlice.util.updateQueryData as any).bind(apiSlice.util, 'getBudgets', undefined);
+
 const budgetsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getBudgets: builder.query<Budget[], void>({
@@ -15,16 +18,8 @@ const budgetsApiSlice = apiSlice.injectEndpoints({
         body: budget,
       }),
       async onQueryStarted(budget, { dispatch, queryFulfilled }) {
-        const patch = dispatch(
-          apiSlice.util.updateQueryData('getBudgets' as never, undefined, (draft: Budget[]) => {
-            draft.push(budget);
-          })
-        );
-        try {
-          await queryFulfilled;
-        } catch {
-          patch.undo();
-        }
+        const patch = dispatch(updateBudgetsCache((draft: Budget[]) => { draft.push(budget); }));
+        try { await queryFulfilled; } catch { patch.undo(); }
       },
     }),
 
@@ -35,17 +30,11 @@ const budgetsApiSlice = apiSlice.injectEndpoints({
         body: budget,
       }),
       async onQueryStarted(budget, { dispatch, queryFulfilled }) {
-        const patch = dispatch(
-          apiSlice.util.updateQueryData('getBudgets' as never, undefined, (draft: Budget[]) => {
-            const idx = draft.findIndex((b) => b.category === budget.category);
-            if (idx !== -1) draft[idx] = budget;
-          })
-        );
-        try {
-          await queryFulfilled;
-        } catch {
-          patch.undo();
-        }
+        const patch = dispatch(updateBudgetsCache((draft: Budget[]) => {
+          const idx = draft.findIndex((b) => b.category === budget.category);
+          if (idx !== -1) draft[idx] = budget;
+        }));
+        try { await queryFulfilled; } catch { patch.undo(); }
       },
     }),
 
@@ -56,17 +45,11 @@ const budgetsApiSlice = apiSlice.injectEndpoints({
         body: { category },
       }),
       async onQueryStarted(category, { dispatch, queryFulfilled }) {
-        const patch = dispatch(
-          apiSlice.util.updateQueryData('getBudgets' as never, undefined, (draft: Budget[]) => {
-            const idx = draft.findIndex((b) => b.category === category);
-            if (idx !== -1) draft.splice(idx, 1);
-          })
-        );
-        try {
-          await queryFulfilled;
-        } catch {
-          patch.undo();
-        }
+        const patch = dispatch(updateBudgetsCache((draft: Budget[]) => {
+          const idx = draft.findIndex((b) => b.category === category);
+          if (idx !== -1) draft.splice(idx, 1);
+        }));
+        try { await queryFulfilled; } catch { patch.undo(); }
       },
     }),
   }),
