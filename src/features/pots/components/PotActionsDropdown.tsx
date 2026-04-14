@@ -30,7 +30,7 @@ export function PotActionsDropdown({ potName, onEdit, onDelete }: Props) {
         aria-label={`Options for ${potName} pot`}
         aria-expanded={open}
         aria-haspopup="menu"
-        className="text-grey-300 hover:text-grey-500 transition-colors flex items-center justify-center w-6 h-6"
+        className="cursor-pointer text-grey-300 hover:text-grey-500 transition-colors flex items-center justify-center w-6 h-6"
       >
         <svg width="16" height="4" viewBox="0 0 16 4" fill="currentColor" aria-hidden="true">
           <circle cx="2" cy="2" r="1.5" />
@@ -48,7 +48,7 @@ export function PotActionsDropdown({ potName, onEdit, onDelete }: Props) {
             type="button"
             role="menuitem"
             onClick={() => { onEdit(); setOpen(false); }}
-            className="text-left text-preset-4 text-grey-900 hover:text-grey-500 transition-colors whitespace-nowrap"
+            className="cursor-pointer text-left text-preset-4 text-grey-900 hover:text-grey-500 transition-colors whitespace-nowrap"
           >
             Edit Pot
           </button>
@@ -57,7 +57,7 @@ export function PotActionsDropdown({ potName, onEdit, onDelete }: Props) {
             type="button"
             role="menuitem"
             onClick={() => { onDelete(); setOpen(false); }}
-            className="text-left text-preset-4 text-red hover:opacity-70 transition-opacity whitespace-nowrap"
+            className="cursor-pointer text-left text-preset-4 text-red hover:opacity-70 transition-opacity whitespace-nowrap"
           >
             Delete Pot
           </button>

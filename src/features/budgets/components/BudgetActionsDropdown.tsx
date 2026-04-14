@@ -30,7 +30,7 @@ export function BudgetActionsDropdown({ category, onEdit, onDelete }: Props) {
         aria-label={`Options for ${category} budget`}
         aria-expanded={open}
         aria-haspopup="menu"
-        className="text-grey-300 hover:text-grey-500 transition-colors flex items-center justify-center w-6 h-6"
+        className="cursor-pointer text-grey-300 hover:text-grey-500 transition-colors flex items-center justify-center w-6 h-6"
       >
         <svg width="16" height="4" viewBox="0 0 16 4" fill="currentColor" aria-hidden="true">
           <circle cx="2" cy="2" r="1.5" />
@@ -42,13 +42,13 @@ export function BudgetActionsDropdown({ category, onEdit, onDelete }: Props) {
       {open && (
         <div
           role="menu"
-          className="absolute right-0 top-full mt-2 z-20 bg-white rounded-lg shadow-[0px_4px_24px_rgba(0,0,0,0.25)] py-3 px-5 flex flex-col gap-3 min-w-[132px]"
+          className="absolute right-0 top-full mt-2 z-20 bg-white rounded-lg shadow-[0px_4px_24px_rgba(0,0,0,0.25)] py-3 px-5 flex flex-col gap-3 min-w-33"
         >
           <button
             type="button"
             role="menuitem"
             onClick={() => { onEdit(); setOpen(false); }}
-            className="text-left text-preset-4 text-grey-900 hover:text-grey-500 transition-colors whitespace-nowrap"
+            className="cursor-pointer text-left text-preset-4 text-grey-900 hover:text-grey-500 transition-colors whitespace-nowrap"
           >
             Edit Budget
           </button>
@@ -57,7 +57,7 @@ export function BudgetActionsDropdown({ category, onEdit, onDelete }: Props) {
             type="button"
             role="menuitem"
             onClick={() => { onDelete(); setOpen(false); }}
-            className="text-left text-preset-4 text-red hover:opacity-70 transition-opacity whitespace-nowrap"
+            className="cursor-pointer text-left text-preset-4 text-red hover:opacity-70 transition-opacity whitespace-nowrap"
           >
             Delete Budget
           </button>
