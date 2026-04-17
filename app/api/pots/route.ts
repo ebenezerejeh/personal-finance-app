@@ -1,18 +1,11 @@
 import { NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
 import type { FinanceData, Pot } from '@/src/types';
-
-async function getData(): Promise<FinanceData> {
-  const filePath = path.join(process.cwd(), 'app_assets', 'data.json');
-  const raw = await fs.readFile(filePath, 'utf-8');
-  return JSON.parse(raw) as FinanceData;
-}
+import data from '@/src/lib/data/data.json';
 
 export async function GET() {
   try {
-    const data = await getData();
-    return NextResponse.json(data.pots);
+    const typedData = data as FinanceData;
+    return NextResponse.json(typedData.pots);
   } catch {
     return NextResponse.json({ error: 'Failed to load data' }, { status: 500 });
   }

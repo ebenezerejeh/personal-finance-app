@@ -1,32 +1,25 @@
 import { NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
 import type { FinanceData } from '@/src/types';
-
-async function getData(): Promise<FinanceData> {
-  const filePath = path.join(process.cwd(), 'app_assets', 'data.json');
-  const raw = await fs.readFile(filePath, 'utf-8');
-  return JSON.parse(raw) as FinanceData;
-}
+import data from '@/src/lib/data/data.json';
 
 export async function GET() {
   try {
-    const data = await getData();
+    const typedData = data as FinanceData;
 
     // Latest 5 transactions
-    const recentTransactions = [...data.transactions]
+    const recentTransactions = [...typedData.transactions]
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       .slice(0, 5);
 
     // Recurring bills due this month (recurring transactions)
-    const recurringBills = data.transactions.filter((t) => t.recurring);
+    const recurringBills = typedData.transactions.filter((t) => t.recurring);
 
     return NextResponse.json({
-      balance: data.balance,
-      pots: data.pots,
-      budgets: data.budgets,
+      balance: typedData.balance,
+      pots: typedData.pots,
+      budgets: typedData.budgets,
       recentTransactions,
-      allTransactions: data.transactions,
+      allTransactions: typedData.transactions,
       recurringBills,
     });
   } catch {

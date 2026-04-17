@@ -1,18 +1,11 @@
 import { NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
 import type { FinanceData } from '@/src/types';
-
-async function getData(): Promise<FinanceData> {
-  const filePath = path.join(process.cwd(), 'app_assets', 'data.json');
-  const raw = await fs.readFile(filePath, 'utf-8');
-  return JSON.parse(raw) as FinanceData;
-}
+import data from '@/src/lib/data/data.json';
 
 export async function GET() {
   try {
-    const data = await getData();
-    const transactions = [...data.transactions].sort(
+    const typedData = data as FinanceData;
+    const transactions = [...typedData.transactions].sort(
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
     return NextResponse.json(transactions);
