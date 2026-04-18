@@ -27,8 +27,6 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
-const PUBLIC_PATHS = ['/login', '/signup'];
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AuthSession | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -39,17 +37,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (session) {
       setUser(session);
     } else {
-      // Clear any stale cookie if no session exists in localStorage
       document.cookie = 'auth_session=; path=/; max-age=0';
-      const isPublic = PUBLIC_PATHS.some((p) =>
-        window.location.pathname.startsWith(p),
-      );
-      if (!isPublic) {
-        router.replace('/login');
-      }
     }
     setIsLoading(false);
-  }, [router]);
+  }, []);
 
   const login = useCallback(
     async (email: string, password: string) => {
