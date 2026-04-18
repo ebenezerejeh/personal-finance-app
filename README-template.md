@@ -47,70 +47,70 @@ Users should be able to:
 ### Links
 
 - Solution URL: [GitHub Repository](https://github.com/ebenezerejeh/personal-finance-app)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [Live Site](https://personal-finance-app-nkei.vercel.app/)
 
 ## My process
 
 ### Built with
 
 - Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
 - Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- [TypeScript](https://www.typescriptlang.org/) - Typed JavaScript
+- [React 19](https://reactjs.org/) - JS library
+- [Next.js](https://nextjs.org/) - React framework (App Router)
+- [Tailwind CSS v4](https://tailwindcss.com/) - Utility-first CSS
+- [shadcn/ui](https://ui.shadcn.com/) - UI component library
+- [Radix UI](https://www.radix-ui.com/) - Headless UI primitives
+- [Redux Toolkit + RTK Query](https://redux-toolkit.js.org/) - Server state management
+- [Zustand](https://zustand-demo.pmnd.rs/) - UI state management
+- [React Hook Form](https://react-hook-form.com/) - Form handling
+- [Zod](https://zod.dev/) - Schema validation
+- [TanStack Table v8](https://tanstack.com/table/v8) - Headless table logic
+- [Recharts](https://recharts.org/) - Chart library
+- [Framer Motion](https://www.framer.com/motion/) - Animations
+- [Axios](https://axios-http.com/) - HTTP client
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+**1. RTK Query for server state management**
+Declarative data fetching with automatic caching and cache invalidation using `providesTags` and `invalidatesTags`. This eliminated the need for manual loading/error state management across the app.
 
-To see how you can add code snippets, see below:
+**2. React Hook Form + Zod schema-first validation**
+Defining the Zod schema first and inferring TypeScript types from it keeps form types and validation logic in sync with zero duplication. Inline error messages are handled automatically via `FormMessage`.
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
-```
+**3. Headless table logic with TanStack Table v8**
+Separating table behaviour (sorting, filtering, pagination) from rendering gives full control over markup and styles while keeping complex logic out of components.
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+**4. Container/Presenter component pattern**
+Splitting smart components (data fetching, logic) from dumb components (pure rendering) made each feature easier to test and reuse across the app.
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+**5. Behavior/style separation with Radix UI + Tailwind CSS**
+Radix handles accessibility, keyboard navigation, and ARIA — Tailwind handles all visuals. This keeps concerns clean and avoids fighting browser-native semantics.
+
+**6. Next.js App Router with Route Handlers**
+Co-locating API logic with the frontend in a single repo using Route Handlers, defaulting to Server Components, and adding `"use client"` only where event handlers or browser APIs are needed.
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+- **Persist data to a real database** — integrate PostgreSQL with Prisma so mutations (adding pots, creating budgets) survive page reloads
+- **Full user authentication** — extend the existing custom auth to support multiple user accounts, each with their own isolated data
+- **End-to-end testing with Playwright** — cover critical flows such as adding a pot, creating a budget, and logging in
+- **Data visualisation improvements** — add spending trends over time using line/bar charts on the overview and budgets pages
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [RTK Query — Automated Refetching](https://redux-toolkit.js.org/rtk-query/usage/automated-refetching) - Essential reference for understanding `providesTags`/`invalidatesTags` and keeping the cache in sync after mutations.
+- [TanStack Table v8 docs](https://tanstack.com/table/v8/docs/introduction) - The headless table guide that covers sorting, filtering, and pagination while keeping full control over rendering.
+- [Zod + React Hook Form integration](https://react-hook-form.com/get-started#SchemaValidation) - Guide for wiring Zod schemas to forms with `@hookform/resolvers` for schema-first validation.
+- [Radix UI primitives docs](https://www.radix-ui.com/primitives/docs/overview/introduction) - Reference for accessibility and keyboard behaviour that comes out of the box with Radix primitives.
+- [Next.js App Router docs](https://nextjs.org/docs/app) - Covers Server Components, Route Handlers, and the `"use client"` boundary in the App Router.
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
+- Frontend Mentor - [@ebenezerejeh](https://www.frontendmentor.io/profile/ebenezerejeh)
+- Twitter - [@ebenezer_onuche](https://www.twitter.com/ebenezer_onuche)
 
 ## Acknowledgments
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
+I thank God for giving me the strength and wisdom to complete this challenge, and I thank the Frontend Mentor community for providing such a great platform to practice and improve my frontend skills.
 
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
