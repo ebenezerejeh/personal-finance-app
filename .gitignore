@@ -22,6 +22,9 @@
 # production
 /build
 
+
+#
+/CLAUDE.md
 # app assets
 /app_assets
 
